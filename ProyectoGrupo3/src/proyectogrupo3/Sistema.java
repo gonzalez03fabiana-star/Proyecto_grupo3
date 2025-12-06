@@ -16,6 +16,10 @@ public class Sistema {
     static int cantidadEmpleados = 0;
     static Cine[] listaSalas = new Cine[3];
     static int cantidadSalas = 0;
+    static ClaseBaile [] listaBaile = new ClaseBaile[3];
+    static ClaseYoga [] listaYoga = new ClaseYoga[3];
+       
+    static int cantidadClases = 0;
 
     /**
      * Metodo para precargar los datos de los empleados y las salas de cine
@@ -46,6 +50,20 @@ public class Sistema {
         int[][] idEmpC = new int[5][5];
         iniciarId(idEmpC);
         listaSalas[cantidadSalas++] = new Cine(" Sala C", "\nJujutsu Kaisen Ejecucion", ocupadoC, idEmpC);
+        
+        boolean[] ocupadoBaile1 = new boolean[8];
+        int[] idBaile1 = new int[8];
+        iniciarIdSimple(idBaile1);
+        listaBaile[cantidadClases] = new ClaseBaile("Salsa", "Marcos", ocupadoBaile1, idBaile1);
+        
+        
+        boolean[] ocupadoYoga1 = new boolean[8];
+        int[] idYoga1 = new int[8];
+        iniciarIdSimple(idYoga1);
+        listaYoga[cantidadClases] = new ClaseYoga("Yoga Relax", "Lucía", ocupadoYoga1, idYoga1);
+        
+
+        cantidadClases++;
     }
 
     public static void iniciarId(int[][] matriz) {
@@ -56,7 +74,11 @@ public class Sistema {
 
         }
     }
-
+    public static void iniciarIdSimple(int[] vec) {
+    for (int i = 0; i < vec.length; i++) {
+        vec[i] = -1;
+      }
+    }
     /**
      * Metodo para ver la lista de empleados
      */
@@ -94,10 +116,11 @@ public class Sistema {
         JOptionPane.showMessageDialog(null, mensaje);
     }
 
-    public static void verMapa() {
+    public static void verMapa() { 
         int sala = Integer.parseInt(JOptionPane.showInputDialog("Sala (1-" + cantidadSalas + "):")) - 1;
         String mapa = listaSalas[sala].mostrarSala();
         JOptionPane.showMessageDialog(null, mapa);
+        
 
     }
 
@@ -131,6 +154,72 @@ public class Sistema {
 
         JOptionPane.showMessageDialog(null, libre ? "Asiento liberado." : "Ya estaba libre.");
     }
+     
+//    Metodo para ver clases Baile o Yoga
+    public static void verClases() {
+        String mensaje = "Listado de Clases:\n\n";
+
+        for (int i = 0; i < cantidadClases; i++) {
+            mensaje += (i + 1) + ") Baile: " + listaBaile[i].mostrarSalon() + "\n";
+            mensaje += (i + 1) + ") Yoga:  " + listaYoga[i].mostrarSalon() + "\n";
+        }
+
+        JOptionPane.showMessageDialog(null, mensaje);
+    }
+//    Metodo para reservar espacio en las clases 
+    public static void reservarEspacio() {
+
+    int tipo = Integer.parseInt(
+            JOptionPane.showInputDialog("¿Qué desea reservar?\n1) Baile\n2) Yoga")
+    );
+
+    int clase = Integer.parseInt(
+            JOptionPane.showInputDialog("Numero de clase: " + cantidadClases + "):")
+    ) - 1;
+
+    int idEmp = Integer.parseInt(JOptionPane.showInputDialog("ID del empleado:"));
+
+    int espacio = Integer.parseInt(
+            JOptionPane.showInputDialog("Número de espacio:")
+    ) - 1;
+
+    boolean reservado;
+
+    if (tipo == 1) {
+        reservado = listaBaile[clase].reservar(idEmp, espacio);
+    } else {
+        reservado = listaYoga[clase].reservar(idEmp, espacio);
+    }
+
+    JOptionPane.showMessageDialog(null,
+            reservado ? "Espacio reservado correctamente." : "Ese espacio está ocupado.");
+}
+//    Metodo para liberar espacio en las clases 
+    public static void liberarEspacio() {
+
+    int tipo = Integer.parseInt(
+            JOptionPane.showInputDialog("¿Qué desea liberar?\n1) Baile\n2) Yoga")
+    );
+
+    int clase = Integer.parseInt(
+            JOptionPane.showInputDialog("Clase (1-" + cantidadClases + "):")
+    ) - 1;
+
+    int espacio = Integer.parseInt(
+            JOptionPane.showInputDialog("Número de espacio:")
+    ) - 1;
+
+    boolean libre;
+
+    if (tipo == 1) {
+        libre = listaBaile[clase].liberar(espacio);
+    } else {
+        libre = listaYoga[clase].liberar(espacio);
+    }
+
+    JOptionPane.showMessageDialog(null,
+            libre ? "Espacio liberado correctamente." : "Ese espacio ya estaba libre.");
+}
 
     /**
      * Metodo para modificar el nombre de la pelicula

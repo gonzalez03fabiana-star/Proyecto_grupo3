@@ -26,14 +26,18 @@ public class MenuPrincipal extends JFrame {
 
         JButton btnCatalogos = crearBoton("Catálogos");
         JButton btnModuloCine = crearBoton("Módulo de Cine");
+        JButton btnModuloClases = crearBoton("Módulo de Clases");
         JButton btnSalir = crearBoton("Salir");
 
         add(btnCatalogos);
         add(btnModuloCine);
+        add(btnModuloClases);
         add(btnSalir);
+        
 
         btnCatalogos.addActionListener(e -> new CatalogoGrafica());
         btnModuloCine.addActionListener(e -> new CineGrafica());
+        btnModuloClases.addActionListener(e -> new ClasesGrafica());
         btnSalir.addActionListener(e -> System.exit(0));
 
         setVisible(true);
