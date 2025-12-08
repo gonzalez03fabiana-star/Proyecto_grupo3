@@ -12,6 +12,7 @@ import javax.swing.JFrame;
  *
  * @author PCadmin
  */
+//Grafica dentro del Modulo de Clases para ver clases, reservar, etc
 public class ClasesGrafica extends JFrame{
     public ClasesGrafica (){
         setTitle("Clases");

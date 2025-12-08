@@ -20,20 +20,31 @@ public class ClaseYoga {
         this.ocupado = ocupado;
         this.idEmpleado = idEmpleado;
     }
-    
+    // String para mostrar el nombre de la clase y su informacion
     
      public String mostrarSalon() {
-        String salon = "Clase de Yoga: " + nombreClase + " | Instructor: " + instructor + "\n";
+        int espaciosOcupados = 0;
 
-        for (int i = 0; i < ocupado.length; i++) {
-            salon += "Espacio" + (i + 1)+ ": "+ (ocupado[i] ? "OCUPADO" : "LIBRE") + "\n"; 
+   
+            for (int i = 0; i < ocupado.length; i++) {
+        boolean o = ocupado[i]; // se saca el valor (true/false)
+        if (o) {
+            espaciosOcupados++; 
+                  }
+            }   
+            int espaciosLibres = ocupado.length - espaciosOcupados;
+
+    
+         return "Clase: " + nombreClase 
+                 + " | Instructor: " + instructor + " | Hora: 7PM\n"
+                 + "Ocupados: " + espaciosOcupados + " | Libres: " + espaciosLibres;
         }
-        salon += "\n";
-
-        return salon;
-    }
+    
+ //Metodo para reservar espacio en la clase 
+   
 
     public boolean reservar(int idEmp, int espacio) {
+        
         if (ocupado[espacio]) 
             return false;
         
@@ -42,6 +53,8 @@ public class ClaseYoga {
 
         return true;
     }
+
+    //Metodo para liberar espacio en la clase 
 
     public boolean liberar(int espacio) {
         if (!ocupado[espacio]) {

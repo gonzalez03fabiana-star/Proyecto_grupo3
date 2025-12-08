@@ -16,9 +16,9 @@ public class Sistema {
     static int cantidadEmpleados = 0;
     static Cine[] listaSalas = new Cine[3];
     static int cantidadSalas = 0;
-    static ClaseBaile [] listaBaile = new ClaseBaile[3];
-    static ClaseYoga [] listaYoga = new ClaseYoga[3];
-       
+    static ClaseBaile [] listaBaile = new ClaseBaile[1];
+    static ClaseYoga [] listaYoga = new ClaseYoga[1];
+       // se agrega las variable de las clases y la cantidad de clases
     static int cantidadClases = 0;
 
     /**
@@ -51,14 +51,14 @@ public class Sistema {
         iniciarId(idEmpC);
         listaSalas[cantidadSalas++] = new Cine(" Sala C", "\nJujutsu Kaisen Ejecucion", ocupadoC, idEmpC);
         
-        boolean[] ocupadoBaile1 = new boolean[8];
-        int[] idBaile1 = new int[8];
+        boolean[] ocupadoBaile1 = new boolean[30];
+        int[] idBaile1 = new int[30];
         iniciarIdSimple(idBaile1);
         listaBaile[cantidadClases] = new ClaseBaile("Salsa", "Marcos", ocupadoBaile1, idBaile1);
         
         
-        boolean[] ocupadoYoga1 = new boolean[8];
-        int[] idYoga1 = new int[8];
+        boolean[] ocupadoYoga1 = new boolean[30];
+        int[] idYoga1 = new int[30];
         iniciarIdSimple(idYoga1);
         listaYoga[cantidadClases] = new ClaseYoga("Yoga Relax", "Lucía", ocupadoYoga1, idYoga1);
         
@@ -155,8 +155,10 @@ public class Sistema {
         JOptionPane.showMessageDialog(null, libre ? "Asiento liberado." : "Ya estaba libre.");
     }
      
-//    Metodo para ver clases Baile o Yoga
-    public static void verClases() {
+
+    //  Metodo para ver clases Baile o Yoga
+    public static void verClases(){
+
         String mensaje = "Listado de Clases:\n\n";
 
         for (int i = 0; i < cantidadClases; i++) {
@@ -166,23 +168,27 @@ public class Sistema {
 
         JOptionPane.showMessageDialog(null, mensaje);
     }
-//    Metodo para reservar espacio en las clases 
+//  Metodo para reservar espacio en las clases 
     public static void reservarEspacio() {
 
     int tipo = Integer.parseInt(
             JOptionPane.showInputDialog("¿Qué desea reservar?\n1) Baile\n2) Yoga")
     );
 
-    int clase = Integer.parseInt(
-            JOptionPane.showInputDialog("Numero de clase: " + cantidadClases + "):")
-    ) - 1;
+    int clase = 0; 
+            
 
     int idEmp = Integer.parseInt(JOptionPane.showInputDialog("ID del empleado:"));
 
     int espacio = Integer.parseInt(
             JOptionPane.showInputDialog("Número de espacio:")
     ) - 1;
-
+    
+    if (espacio < 0 || espacio >= 30) {
+    JOptionPane.showMessageDialog(null, "Número de espacio no existe(1–30)");
+    
+    return;
+    }
     boolean reservado;
 
     if (tipo == 1) {
@@ -194,16 +200,15 @@ public class Sistema {
     JOptionPane.showMessageDialog(null,
             reservado ? "Espacio reservado correctamente." : "Ese espacio está ocupado.");
 }
-//    Metodo para liberar espacio en las clases 
+
+    //   Metodo para liberar espacio en las clases 
     public static void liberarEspacio() {
 
     int tipo = Integer.parseInt(
             JOptionPane.showInputDialog("¿Qué desea liberar?\n1) Baile\n2) Yoga")
     );
 
-    int clase = Integer.parseInt(
-            JOptionPane.showInputDialog("Clase (1-" + cantidadClases + "):")
-    ) - 1;
+    int clase = 0; 
 
     int espacio = Integer.parseInt(
             JOptionPane.showInputDialog("Número de espacio:")

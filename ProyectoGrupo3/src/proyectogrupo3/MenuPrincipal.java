@@ -26,7 +26,8 @@ public class MenuPrincipal extends JFrame {
 
         JButton btnCatalogos = crearBoton("Catálogos");
         JButton btnModuloCine = crearBoton("Módulo de Cine");
-        JButton btnModuloClases = crearBoton("Módulo de Clases");
+        
+        JButton btnModuloClases = crearBoton("Módulo de Clases"); //se agrega el modulo de clases
         JButton btnSalir = crearBoton("Salir");
 
         add(btnCatalogos);
