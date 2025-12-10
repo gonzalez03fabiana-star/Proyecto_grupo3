@@ -6,17 +6,17 @@ package proyectogrupo3;
 
 /**
  *
- * @author gonza
+ * @author PCadmin
  */
 public class Empleado {
     private int id;
     private String nombre;
-    private String departamento;
+    private String puesto;
 
-    public Empleado(int id, String nombre, String departamento) {
+    public Empleado(int id, String nombre, String puesto) {
         this.id = id;
         this.nombre = nombre;
-        this.departamento = departamento;
+        this.puesto = puesto;
     }
 
     public int getId() {
@@ -35,20 +35,19 @@ public class Empleado {
         this.nombre = nombre;
     }
 
-    public String getDepartamento() {
-        return departamento;
+    public String getPuesto() {
+        return puesto;
     }
 
-    public void setDepartamento(String departamento) {
-        this.departamento = departamento;
+    public void setPuesto(String puesto) {
+        this.puesto = puesto;
     }
 
     @Override
     public String toString() {
-        return id + " - " + nombre + " (" + departamento + ")";
+        return "Empleado" + " ID: " + id + "\n  Nombre: " + nombre + ", puesto: " + puesto;
     }
     
     
-
     
 }
