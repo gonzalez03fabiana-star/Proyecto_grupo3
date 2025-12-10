@@ -56,12 +56,12 @@ public class Sistema {
         boolean[][] ocupadoB = new boolean[5][5];
         int[][] idEmpB = new int[5][5];
         iniciarId(idEmpB);
-        listaSalas[cantidadSalas++] = new Cine(" \nSala B", "\nLos ilusionistas 3", ocupadoB, idEmpB);
+        listaSalas[cantidadSalas++] = new Cine("Sala B", "\nLos ilusionistas 3", ocupadoB, idEmpB);
 
         boolean[][] ocupadoC = new boolean[5][5];
         int[][] idEmpC = new int[5][5];
         iniciarId(idEmpC);
-        listaSalas[cantidadSalas++] = new Cine(" \nSala C", "\nJujutsu Kaisen Ejecucion", ocupadoC, idEmpC);
+        listaSalas[cantidadSalas++] = new Cine("Sala C", "\nJujutsu Kaisen Ejecucion", ocupadoC, idEmpC);
 
         listaGym[cantidadGym++] = new Gym("Gimnasio Aerobico", "Marcos");
 
@@ -124,16 +124,17 @@ public class Sistema {
 
     // Metodos para ver las salas de cine
     public static void verSalas() {
-        String mensaje = "Ver salas de cine\n";
+        String mensaje = "Ver salas de cine\n\n";
         for (int i = 0; i < cantidadSalas; i++) {
-            mensaje = mensaje + listaSalas[i].getNombre() + " - Pelicula: " + listaSalas[i].getPelicula();
+            mensaje = mensaje + listaSalas[i].getNombre() + " - Pelicula: " + listaSalas[i].getPelicula() + "\n";
 
         }
         JOptionPane.showMessageDialog(null, mensaje);
     }
 
     public static void verMapa() {
-        int sala = Integer.parseInt(JOptionPane.showInputDialog("Sala" + cantidadSalas + "):"));
+        String texto = "Qué sala desea ver? (1-" + cantidadSalas + "):";
+        int sala = Integer.parseInt(JOptionPane.showInputDialog(texto)) - 1;
         String mapa = listaSalas[sala].mostrarSala();
         JOptionPane.showMessageDialog(null, mapa);
 
@@ -212,7 +213,7 @@ public class Sistema {
 
         JOptionPane.showMessageDialog(null, mensaje);
     }
-    
+
     /**
      * Metodo para reservar espacio en las clases
      */
@@ -277,12 +278,12 @@ public class Sistema {
 
         // Pedir ID del empleado
         int idEmp = Integer.parseInt(JOptionPane.showInputDialog("ID del empleado:"));
-        
+
         //Validar si el empleado ya tiene una reserva 
         if (barista.buscarReserva(idEmp) >= 0) {
-        JOptionPane.showMessageDialog(null, "El empleado ya tiene una reserva activa");
-        return;
-        
+            JOptionPane.showMessageDialog(null, "El empleado ya tiene una reserva activa");
+            return;
+
         }
 
         // Seleccionar bebida 
@@ -353,7 +354,7 @@ public class Sistema {
                         : "No se pudo modificar la reserva");
     }
 
-//Metodo para liberar reserva de Bebida
+//Metodo para liberar la reserva de la bebida
     public static void liberarReserva() {
 
         int idEmp = Integer.parseInt(
@@ -391,16 +392,12 @@ public class Sistema {
 
         JOptionPane.showMessageDialog(null, listado);
 
-        // Selección de sala
         int numSala = Integer.parseInt(JOptionPane.showInputDialog("¿Qué sala desea modificar? (1-" + cantidadSalas + "):")) - 1;
 
-        // Nueva película
         String nuevaPelicula = JOptionPane.showInputDialog("Ingrese el nuevo nombre de la película para " + listaSalas[numSala].getNombre() + ":");
 
-        //Actualizacion
         listaSalas[numSala].setPelicula(nuevaPelicula);
 
-        // Confirmación
         JOptionPane.showMessageDialog(null, "Película actualizada correctamente.\nAhora en " + listaSalas[numSala].getNombre() + " se proyecta: " + listaSalas[numSala].getPelicula());
 
     }

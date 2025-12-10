@@ -63,7 +63,7 @@ public class Cine {
         String sala = "Sala" + nombre + " Pelicula " + pelicula + "\n";
 
         for (int i = 0; i < ocupado[0].length; i++) {
-            sala = sala + (i + 1);
+            sala = sala + "    " + (i + 1 + "");   
         }
         sala = sala + "\n";
 
