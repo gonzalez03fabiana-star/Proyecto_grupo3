@@ -35,17 +35,17 @@ public class Sistema {
         boolean[][] ocupadoA = new boolean[5][6];
         int[][] idEmpA = new int[5][6];
         iniciarId(idEmpA);
-        listaSalas[cantidadSalas++] = new Cine(" Sala A", "\nTelefono negro 2", ocupadoA, idEmpA);
+        listaSalas[cantidadSalas++] = new Cine("\nSala A\n", "Telefono negro 2", ocupadoA, idEmpA);
 
         boolean[][] ocupadoB = new boolean[5][5];
         int[][] idEmpB = new int[5][5];
         iniciarId(idEmpB);
-        listaSalas[cantidadSalas++] = new Cine(" Sala B", "\nLos ilusionistas 3", ocupadoB, idEmpB);
+        listaSalas[cantidadSalas++] = new Cine("\nSala B\n", "Los ilusionistas 3", ocupadoB, idEmpB);
 
         boolean[][] ocupadoC = new boolean[5][5];
         int[][] idEmpC = new int[5][5];
         iniciarId(idEmpC);
-        listaSalas[cantidadSalas++] = new Cine(" Sala C", "\nJujutsu Kaisen Ejecucion", ocupadoC, idEmpC);
+        listaSalas[cantidadSalas++] = new Cine("\nSala C\n", "Jujutsu Kaisen Ejecucion", ocupadoC, idEmpC);
     }
 
     public static void iniciarId(int[][] matriz) {

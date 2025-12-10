@@ -60,11 +60,10 @@ public class Cine {
      * @return
      */
     public String mostrarSala() {
-        String sala =  nombre + " Pelicula " + pelicula + "\n";
-        
-        sala += "    ";
+        String sala = "Sala" + nombre + " Pelicula " + pelicula + "\n";
+
         for (int i = 0; i < ocupado[0].length; i++) {
-            sala = sala + ( i + 1) + "   ";
+            sala = sala + (i + 1);
         }
         sala = sala + "\n";
 
@@ -73,9 +72,9 @@ public class Cine {
 
             for (int k = 0; k < ocupado[0].length; k++) {
                 if (ocupado[j][k]) {
-                    sala = sala + " O ";
-                } else {
                     sala = sala + " L ";
+                } else {
+                    sala = sala + " O ";
                 }
 
             }
